@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruther Dawn & Edda Shan - Wedding Invitation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- BACKGROUND MUSIC -->
+    <audio id="background-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="background">
+
+        </div>
+
+        <div class="hero-content">
+            <p class="dear">Dear,</p>
+            <h1 class="guest-name">Atty. Camille Nica Roque</h1>
+            <p class="invitation-text">You Are Invited!</p>
+
+            <div class="wedding-info">
+                <p class="celebration-label">The Wedding Celebration of</p>
+                <h2 class="couple-names">Justine Karl Pablico & Nica Roque</h2>
+            </div>
+
+            <button class="open-invitation-btn" onclick="scrollToSection('#our-wedding')">
+                <span class="envelope-icon">✉</span>
+                Open Invitation
+            </button>
+        </div>
+    </section>
+
+    <!-- SPLIT LAYOUT CONTAINER -->
+    <div class="split-layout">
+        <!-- LEFT SIDE (fixed background) -->
+        <div class="left-side">
+            <div class="fixed-background"></div>
+        </div>
+
+        <!-- RIGHT SIDE (scrollable content) -->
+        <div class="right-side">
+            <div class="content-wrapper">
+                <!-- OUR WEDDING SECTION -->
+                <section class="justine-nica-section" id="justine-nica">
+                    <!-- intro section -->
+                    <!-- <div class="jn-couple-intro" style="background-image: url('https://jkpnrsample.my.canva.site/justine-nica/_assets/media/3ed7e102bd8457f9cd56f75ceb5a0922.jpg');"> -->
+                    <div class="jn-couple-intro" style="background-image: url('images/imageone.jpeg');">
+                        <h2 class="jn-couple-names">Justine & Nica</h2>
+                        <p class="jn-wedding-date">02.28.2026</p>
+                        <img src="https://jkpnrsample.my.canva.site/justine-nica/_assets/media/d9c668d8aadfce7d8ef3fdb70ff68cad.png" alt="decorative" class="decorative-icon black-filter">
+                    </div>
+
+                    <!-- quote section -->
+                    <div class="jn-quote-section">
+                        <div class="jn-quote-heart" aria-hidden="true">
+                            <img src="images/j-n-heart.png" alt="" class="jn-heart">
+                        </div>
+                        <p class="jn-quote-text">"When the time is right, I, THE LORD,<br> will make it happen."</p>
+                        <p class="jn-quote-source">Isaiah 60:22</p>
+                    </div>
+
+                    <!-- countdown section -->
+                    <div class="jn-countdown-section">
+                        <h3>Counting down to the big day</h3>
+                        <div class="jn-countdown" id="jn-countdown">
+                            <span class="jn-countdown-item">
+                                <span class="jn-countdown-value">0</span>
+                                <span class="jn-countdown-label">Days</span>
+                            </span>
+                            <div class="jn-countdown-item">
+                                <span class="jn-countdown-value">0</span>
+                                <span class="jn-countdown-label">Hours</span>
+                            </div>
+                            <div class="jn-countdown-item">
+                                <span class="jn-countdown-value">0</span>
+                                <span class="jn-countdown-label">Mins</span>
+                            </div>
+                            <div class="jn-countdown-item">
+                                <span class="jn-countdown-value">0</span>
+                                <span class="jn-countdown-label">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- quote section two -->
+                    <div class="jn-quote-section-two">
+                        <div class="jn-quote-section-two-image">
+                            <img src="images/jn-1.jpg" alt="We Found Love">
+                        </div>
+                        
+                        <div class="jn-quote-content-box">                            
+                            <p class="jn-quote-text-styled">"The heart has reasons of its own which reason does not know."</p>
+                            <p class="jn-quote-author">— Blaise Pascal</p>
+                        </div>
+
+                        <div class="jn-quote-image-middle">
+                            <img src="images/couple-bird.png" alt="Decorative birds" class="jn-quote-bird-img">
+                        </div>
+
+                        <div class="jn-quote-content-box-two">                            
+                            <p class="jn-quote-text-styled bottom-quote-text">""The best love is the kind that awakens the soul and makes us reach for
+more. That plants a fire in our hearts and brings peace to our minds.” </p>
+                            <p class="jn-quote-author bottom-quote-author">— Nicholas Sparks, The Notebook"</p>
+                        </div>
+                        
+                        <div class="jn-quote-section-two-image-bottom">
+                            <img src="images/jn-2.jpg" alt="One Love">
+                        </div>
+                    </div>
+
+                    <!-- event details -->
+                    <div class="jn-event-details">
+                        <div class="jn-event-block">
+                            <h4>The Ceremony</h4>
+                            <img src="images/church.png" alt="Church" class="jn-event-image">
+                            <p class="jn-venue">San Isidro Labrador Parish Church, Gusa, Cagayan de Oro City</p>
+                            <a href="https://www.google.com/maps?q=San+Isidro+Labrador+Parish+Church,+Gusa,+Cagayan+de+Oro+City" class="jn-directions-btn" target="_blank">How to get there</a>
+                        </div>
+
+                        <div class="jn-event-block reception-block">
+                            <h4>The Reception</h4>
+                            <img src="images/reception.png" alt="Reception" class="jn-event-image">
+                            <p class="jn-venue">Paras Hilltop Purok 4-A, Gusa, Cagayan de Oro City</p>
+                            <a href="https://www.google.com/maps?q=Paras+Hilltop+Purok+4-A,+Gusa,+Cagayan+de+Oro+City" class="jn-directions-btn" target="_blank">How to get there</a>
+                        </div>
+                    </div>
+
+                    <!-- game plan details -->
+                    <div class="jn-game-plan-section">
+                        <h1>Game Plan</h1>
+                        <h3>Wedding Details</h3>
+                        
+                        <div class="jn-detail-item">
+                            <img src="images/bride.png" alt="Bride" class="jn-detail-icon">
+                            <h5>CEREMONY</h5>
+                            <p>Eyes Up, <strong>Phones Down:</strong>
+                                We promise, our photographers won't miss a beat. 
+                                Please tuck the phones away during the march so you 
+                                can enjoy the magic in real-time.</p>
+                        </div>
+
+                        <div class="jn-detail-item">
+                            <img src="images/couple.png" alt="Couple" class="jn-detail-icon">
+                            <h5>Attire</h5>
+                            <p><strong>Midnight Blue & Barong</strong>: Let’s coordinate! We’re dreaming
+                                of a sea of Midnight Blue gowns and Piña Barongs paired with black
+                                slacks & shoes.</p>
+                        </div>
+
+                        <div class="jn-detail-item">
+                            <img src="images/girls.png" alt="Girls" class="jn-detail-icon">
+                            <h5>Kids</h5>
+                            <p>As much as we love your little ones, 
+                                we’re keeping this evening an <strong>adults-only</strong> affair to ensure a relaxed and focused celebration. 
+                                We hope you enjoy the night out!</p>
+                        </div>
+                    </div>
+
+                    <!-- entourage -->
+                    <div class="entourage-section">
+                        <div class="container">
+                            <h1>THE ENTOURAGE</h1>
+
+                            <div class="content">
+
+                                <!-- Left Column -->
+                                <div class="left-column">
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Wedding Officiant</div>
+                                        <ul class="person-list">
+                                            <li>Fr. Raul A. Ricardo SSJV</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Principal Sponsors</div>
+                                        <ul class="person-list couple-columns">
+                                            <li>Hon. Atty. James Reserva</li>
+                                            <li>Mrs Gemma Reserva</li>
+                                            <li>Atty. Alfred Lord Tennyson Q. Gaccion IV</li>
+                                            <li>Mrs Agnes Sumande</li>
+                                            <li>Atty. Milber G. Alinas, CPA</li>
+                                            <li>Mrs. Luz Socorro Elio</li>
+                                            <li>Atty. Joel Dexter C. Nagtalon</li>
+                                            <li>Mrs. Yolybeth Makinano</li>
+                                            <li>Judge Jose Yamut</li>
+                                            <li>Ms. Rennie West</li>
+                                            <li>Atty. Chubasco Cenon Cañaña</li>
+                                            <li>Mrs. Bambi Medalle</li>
+                                            <li>Mr. Jerry Medalle</li>
+                                            <li>Doc Gwen Lentejas</li>
+                                            <li>Atty. Engr. Lino Juan Roa</li>
+                                            <li>Mrs. Lilibeth Bodiongan</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Cord Sponsors</div>
+                                        <ul class="person-list">
+                                            <li>Atty. Eldo Jan P. Pabatao III</li>
+                                            <li>Dr. Maren S. Pabatao</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Veil Sponsors</div>
+                                        <ul class="person-list">
+                                            <li>Hon. Mayor Aaron Unabia</li>
+                                            <li>Hon. Mayor Atty Candy Unabia</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Candle Sponsors</div>
+                                        <ul class="person-list">
+                                            <li>Atty. Kristoffer Rey Tala</li>
+                                            <li>Mrs. Kharl Belle Concepp Sol-Tala</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <!-- Right Column -->
+                                <div class="right-column">
+                                    <div class="section" style="display: flex; flex-direction: column;">
+                                        <div style="flex: 1;">
+                                            <div class="section-title cursive">Best Man</div>
+                                            <ul class="person-list">
+                                                <li>Atty. Pocholo Isabelo M. Reserva</li>
+                                            </ul>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <div class="section-title cursive">Maid of Honor</div>
+                                            <ul class="person-list">
+                                                <li>Atty. Hillary Olga M. Reserva</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="wedding-party-row">
+                                        <div class="section">
+                                            <div class="section-title cursive">Groomsmen</div>
+                                            <ul class="person-list">
+                                                <li>Atty. Reynald E. Mangao</li>
+                                                <li>Atty. Christian Paul A. Estandarte</li>
+                                                <li>Atty. Edgar Noel V. Constantino, CPA</li>
+                                                <li>Atty. Steve Marc B. Lagapa</li>
+                                                <li>Mr. Christopher T. Miral, JD</li>
+                                                <li>Mr. Claude Van Roque</li>
+                                                <li>Mr. Arfel Nikolaus B. Villanueva, CPA</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="section">
+                                            <div class="section-title cursive">Bridesmaids</div>
+                                            <ul class="person-list">
+                                                <li>Mrs. Mares Tinio-Cubillas, JD</li>
+                                                <li>Ms. Christine Almonte</li>
+                                                <li>Ms. Dara Eloise Dano</li>
+                                                <li>Doc. Christine Awing</li>
+                                                <li>Ms. Bling Perez</li>
+                                                <li>Atty. Harriet Golda Reserva</li>
+                                                <li>Atty. Celina Togonan</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Flower Ladies</div>
+                                        <ul class="person-list">
+                                            <li>Princess Barriga Roque</li>
+                                            <li>Jillian Sabas</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Coin Bearer</div>
+                                        <ul class="person-list">
+                                            <li>Cris Jeanne Pador</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="section">
+                                        <div class="section-title cursive">Bible Bearer</div>
+                                        <ul class="person-list">
+                                            <li>Von Ganemede Pador</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="jn-closing">
+                        <img src="https://jkpnrsample.my.canva.site/justine-nica/_assets/media/896ad6e09ec0d215517a6bda54ae51d5.jpg" alt="Closing" class="jn-closing-image">
+                        <h3>Justine Karl & Nica</h3>
+                        <p class="jn-closing-msg">See you! To love, laughter, and happily ever after.</p>
+                    </div>
+                </section>
+
+                <!-- FOOTER -->
+                <footer class="footer">
+                    <p>Made with ♥ by <strong>NgantenStory</strong></p>
+                    <p class="backsound">Backsound by: Bruno Mars - Marry You</p>
+                    <p class="copyright">© all rights reserved by NgantenStory</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Set background image from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const bgImage = urlParams.get('bg');
+        if (bgImage) {
+            const decodedBg = decodeURIComponent(bgImage);
+            document.querySelector('.fixed-background').style.backgroundImage = `linear-gradient(135deg, rgba(45, 74, 61, 0.7) 0%, rgba(26, 47, 36, 0.7) 100%), url('${decodedBg}')`;
+            document.querySelector('.fixed-background').style.backgroundSize = 'cover';
+            document.querySelector('.fixed-background').style.backgroundPosition = 'center';
+        }
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
