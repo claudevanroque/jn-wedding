@@ -2173,3 +2173,2446 @@ body {
     flex: 1;
 }
 
+/* ============= BASE STYLES ============= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: normal, 'Cormorant Garamond', serif;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* ============= LAYOUT & SPLIT SCREEN ============= */
+.split-layout {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: none;
+}
+
+.split-layout.active {
+    display: flex;
+}
+
+.left-side {
+    width: 65%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.right-side {
+    width: 35%;
+    margin-left: 65%;
+    position: relative;
+    z-index: 5;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Fixed Background for Wedding Section */
+.fixed-background {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2d4a3d 0%, #1a2f24 100%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Scrollable Content Wrapper */
+.content-wrapper {
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ============= HERO SECTION ============= */
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.25)),
+        url('images/imageone.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in;
+    max-width: 900px;
+    padding: 40px 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dear {
+	margin-top: 40px;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    opacity: 0.95;
+    font-family: 'Playfair Display', serif;
+}
+
+.guest-name {
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+	margin-top: -10px;
+}
+
+.invitation-text {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #e8d5c4;
+	margin-top: -5px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* .wedding-info {
+    margin: 30px 0;
+} */
+
+.celebration-label {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.couple-names {
+    font-size: 72px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+    font-family: 'Playfair Display', serif;
+    /* white-space: nowrap; */
+	margin-top: -5px;
+}
+
+.open-invitation-btn {
+    /* margin-top: 10px; */
+    padding: 16px 60px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #2d4a3d;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.open-invitation-btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.envelope-icon {
+    font-size: 20px;
+}
+
+/* ============= OUR WEDDING SECTION ============= */
+.our-wedding {
+    background-color: #f9f7f4;
+    /* padding: 80px 40px; */
+    position: relative;
+    z-index: 5;
+}
+
+.wedding-title-container {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.wedding-svg {
+    max-width: 250px;
+    height: 50px;
+    margin: 0 auto;
+    display: block;
+}
+
+.wedding-svg text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    fill: #2d4a3d;
+    letter-spacing: 1px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 80px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Couple Section */
+.couple-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 900px;
+    margin: 0 auto 80px;
+}
+
+.couple-card {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.couple-card h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.parent-info {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.parent-info strong {
+    color: #333;
+}
+
+/* Story Section */
+.story-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 900px;
+    margin: 0 auto 80px;
+}
+
+.story-card {
+    text-align: center;
+    padding: 40px;
+}
+
+.story-card h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.story-quote {
+    font-size: 18px;
+    font-style: italic;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* Event Section */
+.event-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 60px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.event-title {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.event-subtitle {
+    font-size: 20px;
+    color: #999;
+    margin-bottom: 40px;
+    font-family: 'Playfair Display', serif;
+}
+
+.event-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.event-item {
+    padding: 20px;
+}
+
+.event-label {
+    font-size: 14px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.event-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    font-family: 'Playfair Display', serif;
+}
+
+.view-location-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 40px;
+    background-color: #2d4a3d;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.view-location-btn:hover {
+    background-color: #1a2f24;
+    transform: translateY(-2px);
+}
+
+/* Countdown */
+.countdown-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 60px;
+}
+
+.countdown-section h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-value {
+    font-size: 48px;
+    font-weight: 700;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.countdown-label {
+    font-size: 14px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+/* Quote Section */
+.quote-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 60px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.quote-text {
+    font-size: 24px;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-family: 'Playfair Display', serif;
+}
+
+.quote-source {
+    font-size: 16px;
+    color: #999;
+    font-weight: 500;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 60px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rsvp-section h3 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.rsvp-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.rsvp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.rsvp-form input,
+.rsvp-form select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.rsvp-form input:focus,
+.rsvp-form select:focus {
+    outline: none;
+    border-color: #2d4a3d;
+    box-shadow: 0 0 0 3px rgba(45, 74, 61, 0.1);
+}
+
+.attire-info {
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* Gifts Section */
+.gifts-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 60px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gifts-section h3 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.gifts-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.gift-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gift-btn {
+    padding: 12px 40px;
+    background-color: #2d4a3d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
+}
+
+.gift-btn:hover {
+    background-color: #1a2f24;
+    transform: translateY(-2px);
+}
+
+/* Comments Section */
+.comments-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 60px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.comments-section h3 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.comments-section > p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.comment-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: #2d4a3d;
+    box-shadow: 0 0 0 3px rgba(45, 74, 61, 0.1);
+}
+
+.submit-btn {
+    padding: 12px 40px;
+    background-color: #2d4a3d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
+    align-self: center;
+}
+
+.submit-btn:hover {
+    background-color: #1a2f24;
+    transform: translateY(-2px);
+}
+
+.comments-list {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.comment {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f7f4;
+    border-radius: 8px;
+    border-left: 4px solid #2d4a3d;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #2d4a3d;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-family: 'Playfair Display', serif;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.comment-text {
+    color: #666;
+    line-height: 1.6;
+}
+
+.see-more-btn {
+    padding: 10px 30px;
+    background-color: transparent;
+    color: #2d4a3d;
+    border: 2px solid #2d4a3d;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
+}
+
+.see-more-btn:hover {
+    background-color: #2d4a3d;
+    color: white;
+}
+
+/* Closing Section */
+.closing-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 60px;
+}
+
+.closing-quote {
+    font-size: 24px;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-family: 'Playfair Display', serif;
+}
+
+.closing-section h3 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+}
+
+.closing-thank {
+    font-size: 18px;
+    color: #999;
+    margin-top: 30px;
+}
+
+/* ============= AUDIO/MUSIC CONTROL ============= */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    background-color: #2d4a3d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.music-control:hover {
+    background-color: #1a2f24;
+    transform: scale(1.1);
+}
+
+.music-control.playing::before {
+    content: '♫';
+}
+
+.music-control.paused::before {
+    content: '♪';
+}
+
+@media (max-width: 480px) {
+    .music-control {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+/* ============= FOOTER ============= */
+.footer {
+    background-color: #2d4a3d;
+    color: white;
+    text-align: center;
+    padding: 40px;
+    font-size: 14px;
+}
+
+.footer p {
+    margin-bottom: 10px;
+}
+
+.backsound {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.copyright {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 20px;
+}
+
+/* ============= JUSTINE & NICA SECTION ============= */
+.justine-nica-section {
+    background: rgb(31, 49, 80);
+    /* background: linear-gradient(135deg, #f5f1ed 0%, #f9f7f4 100%); */
+    /* padding: 80px 40px; */
+    position: relative;
+    z-index: 5;
+}
+
+.jn-couple-intro {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: 55% center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.jn-couple-intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 1;
+}
+
+.jn-couple-intro > * {
+    position: relative;
+    z-index: 2;
+}
+
+.jn-couple-intro.scroll-animate {
+    animation: fadeInDown 1.2s ease-out forwards;
+}
+
+.jn-intro-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+
+.jn-couple-names {
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    font-family: normal 'Playfair Display', serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: -300px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.jn-wedding-date {
+    font-size: 32px;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    font-family: normal, 'Playfair Display', serif;
+    letter-spacing: 3px;
+    font-weight: 300;
+    margin-top: -15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.decorative-icon {
+    width: 120px;
+    height: auto;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    display: block;
+    margin: 0;
+    z-index: 2;
+}
+
+.decorative-icon.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.jn-couple-names.visible,
+.jn-wedding-date.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.black-filter {
+    filter: brightness(0) invert(1);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.jn-quote-section {
+    background: linear-gradient(135deg, #f5f1ed 0%, #f9f7f4 100%);
+    text-align: center;
+    padding: 5px 40px 50px;
+    /* border-radius: 10px; */
+    /* margin-bottom: 80px; */
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); */
+}
+
+.jn-quote-heart {
+    position: relative;
+    width: 420px;
+    height: auto;
+    margin: 0 auto -60px;
+}
+
+.jn-heart {
+    position: relative;
+    display: block;
+    margin: -40px auto -80px 0;
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    filter: blur(2px);
+    animation: none;
+    width: 400px;
+    height: auto;
+}
+
+.jn-quote-heart.draw .jn-heart {
+    animation: heartWrite 3s cubic-bezier(0.42, 0, 0.2, 1) forwards;
+}
+
+@keyframes heartWrite {
+    from {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+        transform: translateY(8px);
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+
+.jn-quote-section.scroll-animate {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.jn-quote-section-two {
+    text-align: center;
+    padding: 20px 15px;
+    min-height: 100vh;
+}
+
+.jn-quote-section-two-image {
+    width: 100%;
+    padding: 0 10%;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+.jn-quote-section-two-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 10px 10px 0 0;
+    margin: 0 auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+}
+
+.jn-quote-section-two-image-bottom {
+    width: 100%;
+    padding: 0 10%;
+    margin-top: 0;
+}
+
+.jn-quote-section-two-image-bottom img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0 0 10px 10px;
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+}
+
+.jn-quote-content-box {
+    background: linear-gradient(135deg, #f5f1ed 0%, #f9f7f4 100%);
+    padding: 20px 20px;
+    border-top: 2px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    z-index: 1;
+}
+
+.jn-quote-content-box-two {
+    background: linear-gradient(135deg, #f5f1ed 0%, #f9f7f4 100%);
+    padding: 20px 20px;
+    border-bottom: 2px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.jn-quote-image-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 20px;
+    opacity: 1;
+}
+
+.jn-quote-bird-img {
+    width: 140px;
+    height: auto;
+    display: block;
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translateX(-10px);
+    transition: clip-path 1.6s ease-out, opacity 1s ease-out, transform 1s ease-out;
+}
+
+.jn-quote-image-middle.is-visible .jn-quote-bird-img {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: translateX(0);
+}
+
+.jn-quote-text-styled {
+    font-size: 22px;
+    color: #2d4a3d;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 0;
+    transform: translateX(80px);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.jn-quote-author {
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+    text-align: right;
+    margin-top: 10px;
+    font-style: normal;
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.jn-quote-text-styled.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.jn-quote-author.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Separate animations for bottom quote box */
+.bottom-quote-text {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.bottom-quote-author {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.bottom-quote-text.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.bottom-quote-author.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.jn-quote-icon {
+    font-size: 28px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.jn-quote-text {
+    font-size: 24px;
+    color: #111;
+    line-height: 1;
+    font-family: 'Playfair Display', serif;
+}
+
+.jn-quote-source {
+    font-size: 18px;
+    color: #111;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+    margin-top: -10px;
+}
+
+.jn-countdown-section {
+    position: relative;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 20px 20px 80px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.jn-countdown-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%), url('https://jkpnrsample.my.canva.site/justine-nica/_assets/media/4c04e0bda3b01eaf4082b189ef78bf68.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.jn-countdown-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+.jn-countdown-section h3 {
+    font-size: 30px;
+    color: white;
+    font-family: normal, 'Playfair Display', serif;
+    /* margin-bottom: 40px; */
+    font-weight: 400;
+}
+
+.jn-countdown-section.scroll-animate h3 {
+    animation: fadeInDown 1.2s ease-out forwards;
+}
+
+.jn-section-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+.jn-countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.jn-countdown-section.scroll-animate .jn-countdown {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.jn-countdown-item {
+    /* background: white; */
+    padding: 30px 20px;
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* .jn-countdown-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(45, 74, 61, 0.15);
+} */
+
+.jn-countdown-value {
+    display: block;
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 5px;
+}
+
+.jn-countdown-label {
+    display: block;
+    font-size: 14px;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.jn-event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0px 20px 0px 20px;
+}
+
+.jn-event-details.scroll-animate {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.jn-event-block {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.jn-event-block:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(45, 74, 61, 0.15);
+}
+
+.jn-event-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.jn-event-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.jn-event-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 45px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.jn-venue {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.jn-directions-btn {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    background-color: #F7F7F4;
+    color: #111;
+    border: 1px solid #1E2B46;
+    padding: 14px 32px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.reception-block .jn-event-image {
+    max-width: 80%;
+    transform: translateX(80px);
+}
+
+.jn-game-plan-section {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    background-color: #F6F4EF;
+    padding: 10px 10px;
+}
+
+.jn-game-plan-section.scroll-animate {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.jn-game-plan-section h1 {
+    font-size: 40px;
+    color: #A6ABB3;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.41em;
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: -18px;
+}
+
+.jn-game-plan-section h3 {
+    font-size: 24px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.41em;
+    text-align: center;
+    font-weight: 800;
+}
+
+.jn-detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.jn-detail-icon {
+    font-size: 150px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.jn-detail-item h5 {
+    font-size: 18px;
+    color: rgb(35, 49, 78);
+    font-family: Montserrat, sans-serif;
+    font-weight: 300;
+}
+
+.jn-detail-item p {
+    margin-top: -10px;
+    font-size: 16px;
+    color: rgb(35, 49, 78);
+    line-height: 1.6;
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    padding: 0 35px;
+    margin-left: 15px;
+}
+
+.jn-closing {
+    text-align: center;
+    padding: 80px 40px;
+}
+
+.jn-closing.scroll-animate {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.jn-closing-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+.jn-closing h3 {
+    font-size: 48px;
+    color: #2d4a3d;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.jn-closing-msg {
+    font-size: 20px;
+    color: #8a9b8f;
+    font-style: italic;
+    line-height: 1.8;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* ============= RESPONSIVE DESIGN ============= */
+@media (max-width: 1024px) {
+    .jn-couple-names {
+        font-size: 48px;
+    }
+
+    .jn-wedding-date {
+        font-size: 24px;
+    }
+
+    .jn-event-details {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .jn-event-block {
+        padding: 40px 30px;
+    }
+
+    .jn-event-block h4 {
+        font-size: 24px;
+    }
+
+    .jn-detail-item {
+        padding: 30px;
+    }
+
+    .jn-detail-item h5 {
+        font-size: 20px;
+    }
+
+    .jn-closing h3 {
+        font-size: 40px;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .fixed-background {
+        width: 65%;
+    }
+
+    .content-wrapper.show-split {
+        margin-left: 65%;
+        width: 35%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hero background: fit on mobile and avoid background scrolling glitches */
+    .hero {
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    .background {
+        background-size: cover;
+        background-position: 53% center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Hero content layout: greeting at top, info/button at bottom */
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        padding: 32px 20px 28px;
+        box-sizing: border-box;
+    }
+
+    .hero-content .wedding-info {
+        margin-top: auto;
+        /* margin-bottom: 12px; */
+    }
+
+    /* .hero-content .open-invitation-btn {
+        margin-top: 5px;
+    } */
+
+    .left-side {
+        display: none;
+    }
+
+    .right-side {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .dear {
+        font-size: 24px;
+    }
+
+    .guest-name {
+        font-size: 30px;
+    }
+
+    .invitation-text {
+        font-size: 28px;
+    }
+
+    .couple-names {
+        font-size: 30px;
+        white-space: nowrap;
+    }
+
+    .couple-section,
+    .story-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .our-wedding {
+        padding: 0;
+    }
+
+    .wedding-title-container,
+    .couple-section,
+    .story-section,
+    .event-section,
+    .rsvp-section,
+    .gifts-section,
+    .comments-section,
+    .quote-section,
+    .countdown-section,
+    .closing-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .section-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+
+    .event-section,
+    .rsvp-section,
+    .gifts-section,
+    .comments-section,
+    .quote-section {
+        padding: 40px 20px;
+        margin: 0 auto 40px;
+    }
+
+    .countdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lights {
+        top: 5%;
+        padding: 0 20px;
+    }
+
+    .light-1 { transform: translateX(-50px); }
+    .light-5 { transform: translateX(50px); }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .couple-card {
+        padding: 30px;
+    }
+
+    .couple-card h3 {
+        font-size: 24px;
+    }
+
+    .story-card {
+        padding: 30px;
+    }
+
+    .story-card h3 {
+        font-size: 24px;
+    }
+
+    .event-details {
+        gap: 20px;
+    }
+
+    .event-item {
+        padding: 15px;
+    }
+
+    .gift-buttons {
+        flex-direction: column;
+    }
+
+    .gift-btn,
+    .submit-btn,
+    .view-location-btn {
+        width: 100%;
+    }
+
+    .rsvp-form,
+    .comment-form {
+        gap: 12px;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .comment-form input,
+    .comment-form textarea {
+        font-size: 16px;
+    }
+
+    /* Justine & Nica Responsive */
+    .justine-nica-section {
+        padding: 0;
+    }
+
+    .jn-couple-intro {
+        margin-bottom: 0;
+    }
+
+    .jn-couple-names {
+        font-size: 36px;
+    }
+
+    .jn-wedding-date {
+        font-size: 20px;
+    }
+
+    .jn-quote-section {
+        padding: 20px 0;
+        margin-bottom: 0;
+        border-radius: 0;
+    }
+
+    .jn-quote-text {
+        font-size: 20px;
+    }
+
+    .jn-quote-source {
+        font-size: 16px;
+    }
+
+    .jn-heart {
+        width: 280px;
+        margin: 0 auto;
+        margin-top: -40px;
+    }
+
+    .jn-quote-heart {
+        width: 280px;
+        margin: 0 auto -50px;
+    }
+
+    .jn-countdown-section h3 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .jn-countdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .jn-countdown-item {
+        padding: 20px 15px;
+    }
+
+    .jn-countdown-value {
+        font-size: 32px;
+    }
+
+    .jn-countdown-label {
+        font-size: 12px;
+    }
+
+    .jn-event-details {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin: 0 auto 50px;
+    }
+
+    .jn-event-block {
+        padding: 35px 25px;
+    }
+
+    .jn-event-block h4 {
+        font-size: 22px;
+    }
+
+    .jn-venue {
+        font-size: 15px;
+    }
+
+    .jn-game-plan-section {
+        margin: 0 auto 50px;
+    }
+
+    .jn-game-plan-section h3 {
+        font-size: 23px;
+        margin-bottom: 40px;
+    }
+
+    .jn-detail-item {
+        padding: 25px;
+    }
+
+    .jn-detail-item h5 {
+        font-size: 18px;
+    }
+
+    .jn-detail-item p {
+        font-size: 14px;
+    }
+
+    .jn-closing {
+        padding: 50px 20px;
+    }
+
+    .jn-closing h3 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .jn-closing-msg {
+        font-size: 16px;
+    }
+
+    .reception-block .jn-event-image {
+        transform: translateX(60px);
+    }
+}
+
+@media (max-width: 480px) {
+    .dear {
+        font-size: 15px;
+    }
+
+    .guest-name {
+        font-size: 20px;
+    }
+
+    .invitation-text {
+        font-size: 18px;
+    }
+
+    .couple-names {
+        font-size: 20px;
+    }
+
+    .celebration-label {
+        font-size: 22px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .event-title {
+        font-size: 20px;
+    }
+
+    .event-subtitle {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .countdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .countdown-item {
+        padding: 15px 10px;
+    }
+
+    .countdown-value {
+        font-size: 28px;
+    }
+
+    .countdown-label {
+        font-size: 11px;
+        margin-top: 8px;
+    }
+
+    .open-invitation-btn {
+        padding: 12px 25px;
+        font-size: 14px;
+        gap: 8px;
+        margin-bottom: 60px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .envelope-icon {
+        font-size: 16px;
+    }
+
+
+    .couple-card,
+    .story-card,
+    .event-section,
+    .rsvp-section,
+    .gifts-section,
+    .comments-section,
+    .quote-section {
+        padding: 25px 15px;
+        margin: 0 0 30px 0;
+        border-radius: 8px;
+    }
+
+    .couple-card h3,
+    .story-card h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .parent-info {
+        font-size: 14px;
+    }
+
+    .story-quote {
+        font-size: 16px;
+    }
+
+    .event-item {
+        padding: 12px;
+    }
+
+    .event-label {
+        font-size: 12px;
+    }
+
+    .event-value {
+        font-size: 16px;
+    }
+
+    .view-location-btn {
+        padding: 10px 25px;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .quote-text {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .quote-source {
+        font-size: 14px;
+    }
+
+    .closing-quote {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .closing-section h3 {
+        font-size: 24px;
+    }
+
+    .closing-thank {
+        font-size: 16px;
+    }
+
+    .rsvp-section h3,
+    .gifts-section h3,
+    .comments-section h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .rsvp-section > p,
+    .gifts-section > p,
+    .comments-section > p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .rsvp-form,
+    .comment-form {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .comment-form input,
+    .comment-form textarea {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .comment-form textarea {
+        min-height: 80px;
+    }
+
+    .submit-btn,
+    .gift-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+        border-radius: 5px;
+    }
+
+    .gift-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .attire-info {
+        font-size: 12px;
+        margin-top: 15px;
+    }
+
+    .comment {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .comment-author {
+        font-size: 14px;
+    }
+
+    .comment-time {
+        font-size: 11px;
+    }
+
+    .comment-text {
+        font-size: 13px;
+    }
+
+    .see-more-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+
+    .footer {
+        padding: 30px 15px;
+        font-size: 12px;
+    }
+
+    .footer p {
+        margin-bottom: 8px;
+    }
+
+    .backsound {
+        font-size: 11px;
+    }
+
+    .copyright {
+        font-size: 10px;
+        margin-top: 15px;
+    }
+
+    .hero-content {
+        padding: 20px;
+    }
+
+    .wedding-info {
+        /* margin: 40px 0; */
+		margin-top: 40px;
+    }
+
+    /* Justine & Nica Mobile Responsive */
+
+    /* .jn-couple-intro {
+        margin-bottom: 40px;
+    } */
+
+    .jn-couple-names {
+        font-size: 47px;
+        letter-spacing: 1px;
+    }
+
+    .jn-wedding-date {
+        font-size: 35px;
+    }
+
+    .jn-quote-section {
+        padding: 30px 15px;
+        /* margin-bottom: 40px; */
+        /* border-radius: 8px; */
+    }
+
+    .jn-quote-text {
+        font-size: 20px;
+    }
+
+    .jn-quote-source {
+        font-size: 18px;
+    }
+
+    .jn-countdown-section h3 {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .jn-countdown {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        max-width: none;
+    }
+
+    .jn-countdown-item {
+        padding: 15px 10px;
+        border-radius: 8px;
+    }
+
+    .jn-countdown-value {
+        font-size: 24px;
+    }
+
+    .jn-countdown-label {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .jn-event-details {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin: 0 0 40px 0;
+        max-width: none;
+    }
+
+    .jn-event-block {
+        padding: 25px 15px;
+        border-radius: 8px;
+    }
+
+    .jn-event-block h4 {
+        font-size: 2.34rem;
+        margin-bottom: 15px;
+    }
+
+    .jn-venue {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .jn-directions-btn {
+        padding: 10px 25px;
+        font-size: 12px;
+        width: 100%;
+        /* border-radius: 20px; */
+    }
+
+    .jn-game-plan-section {
+        margin: 0 0 40px 0;
+        max-width: none;
+    }
+
+    .jn-game-plan-section h1 {
+        font-size: 35px;
+        margin-bottom: -15px;
+    }
+
+    .jn-game-plan-section h3 {
+        font-size: 20px;
+    }
+
+    .jn-detail-item {
+        margin-top: -20px;
+    }
+
+    .jn-detail-item:nth-child(4) {
+        margin-top: -40px;
+    }
+
+    .jn-detail-item:nth-child(5) {
+        margin-top: -40px;
+    }
+
+    .jn-detail-item h5 {
+        font-size: 25px;
+    }
+
+    .jn-detail-item p {
+        font-size: 17px;
+    }
+
+    .jn-closing {
+        padding: 40px 15px;
+    }
+
+    .jn-closing h3 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .jn-closing-msg {
+        font-size: 14px;
+    }
+}
+
+/* ============= ENTOURAGE SECTION ============= */
+.entourage-section {
+    background: rgb(31, 49, 80);
+    color: #f8f9fa;
+    font-family: 'Montserrat', 'Playfair Display', Georgia, serif;
+}
+
+.entourage-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.entourage-section h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 3px;
+    color: #e9ecef;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.entourage-section .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.entourage-section .left-column,
+.entourage-section .right-column {
+    flex: 1;
+    min-width: auto;
+}
+
+.entourage-section .section {
+    margin-bottom: 1.6rem;
+}
+
+.entourage-section .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: #c9a96e; /* soft gold */
+    text-align: center;
+    margin: 0 0 0.8em;
+    letter-spacing: 2px;
+}
+
+.entourage-section .section-title.cursive {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 0.05em;
+    letter-spacing: 1px;
+    color: rgb(202, 229, 255);
+}
+
+.entourage-section .person-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-style: 'Montserrat';
+}
+
+.entourage-section .person-list li {
+    margin-bottom: 0.6em;
+}
+
+.entourage-section .person-list.couple-columns li {
+    display: block;
+    width: 100%;
+}
+
+.entourage-section .wedding-party-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.entourage-section .wedding-party-row .section {
+    flex: 1;
+}
+
+/* Video styles */
+:root {
+  --bg: #f6f3e9;
+  --text-main: #9aa0a6;
+  --text-dark: #ffffff;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* Title */
+.title {
+  letter-spacing: 0.5em;
+  font-size: 42px;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-family: "Allura", cursive;
+  font-size: 32px;
+  color: #3f4a5a;
+  margin-bottom: 50px;
+}
+
+/* Video container */
+.video-frame {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: url("https://images.unsplash.com/photo-1520974735194-6c2c9a1a8fbd?q=80&w=1920") center / cover no-repeat;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Dark overlay */
+.video-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.video-frame.playing::after {
+  display: none;
+}
+
+.video-frame.playing {
+  background: none;
+}
+
+/* Video styles */
+.video-frame video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Center text */
+.video-text {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+}
+
+.video-text h3 {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin-bottom: 30px;
+}
+
+/* Play button */
+.play-btn {
+  width: 80px;
+  height: 80px;
+  background: #ff0000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.play-btn::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 18px solid #fff;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title {
+	font-size: 30px;
+	letter-spacing: 0.3em;
+  }
+
+  .subtitle {
+	font-size: 24px;
+  }
+
+  .video-text h3 {
+	font-size: 24px;
+  }
+
+  .play-btn {
+	width: 60px;
+	height: 60px;
+  }
+}
+
+/* ============= VIDEO SECTION ============= */
+:root {
+    --bg: #f6f3e9;
+    --text-main: #9aa0a6;
+    --text-dark: #ffffff;
+}
+
+.video-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #F6F4EF;
+}
+
+.title {
+    margin-top: -40px;
+    letter-spacing: 0.5em;
+    font-size: 42px;
+    color: var(--text-main);
+    font-family: Didot, serif;
+}
+
+.subtitle {
+    margin-top: -40px;
+    font-family: "Playlist Script", cursive;
+    font-size: 35px;
+    color: #3f4a5a;
+}
+
+.video-frame {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    background: url("https://images.unsplash.com/photo-1520974735194-6c2c9a1a8fbd?q=80&w=1920") center / cover no-repeat;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.video-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+}
+
+.video-frame.playing::after {
+    display: none;
+}
+
+.video-frame.playing {
+    background: none;
+}
+
+.video-frame video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-text {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+}
+
+.video-text h3 {
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    margin-bottom: 30px;
+}
+
+.play-btn {
+    width: 80px;
+    height: 80px;
+    background: #ff0000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.play-btn::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 18px solid #fff;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 30px;
+        letter-spacing: 0.3em;
+    }
+
+    .subtitle {
+        font-size: 24px;
+    }
+
+    .video-text h3 {
+        font-size: 24px;
+    }
+
+    .play-btn {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 460px) {
+    .title {
+        margin-top: -40px;
+        letter-spacing: 0.5em;
+        font-size: 42px;
+    }
+
+    .subtitle {
+        margin-top: -40px;
+        font-size: 35px;
+    }
+}
+

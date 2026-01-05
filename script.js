@@ -34,7 +34,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Slide-in for quote text and author
     setupQuoteTextSlides();
+
+    // Setup video play functionality
+    setupVideoPlayer();
 });
+
+// Setup video player
+function setupVideoPlayer() {
+    const playBtn = document.querySelector('.play-btn');
+    if (playBtn) {
+        playBtn.addEventListener('click', function() {
+            const videoFrame = document.querySelector('.video-frame');
+            const video = document.createElement('video');
+            video.width = '100%';
+            video.height = '100%';
+            video.controls = true;
+            video.muted = false;
+            video.src = 'The Most Cinematic Wedding Trailer You ll Ever See.mp4';
+            videoFrame.innerHTML = '';
+            videoFrame.appendChild(video);
+            videoFrame.classList.add('playing');
+            video.addEventListener('canplay', () => {
+                video.play().then(() => {
+                    // Stop background music when video plays
+                    const bgMusic = document.getElementById('background-music');
+                    if (bgMusic) {
+                        bgMusic.pause();
+                    }
+                }).catch(e => alert('Play failed: ' + e.message));
+            });
+        });
+    }
+}
 
 // Setup music control
 function setupMusicControl() {
