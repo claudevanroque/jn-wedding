@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}Justine & Nica - Wedding Invitation{% endblock %}</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<!-- MODAL -->
+	<div class="modal" id="modal">
+		<div class="thank-you">
+			<button class="close-btn" onclick="closeModal()">×</button>
+			<h3 id="modalTitle">Reminder</h3>
+			<p class="message" id="modalContent">
+			We're so grateful for your response.<br>
+			We can't wait to celebrate with you!
+			</p>
+		</div>
+	</div>
+
+	<!-- PAYMENT MODALS -->
+	<div class="modal" id="bankTransferModal">
+		<div class="thank-you" onclick="event.stopPropagation()">
+			<button class="close-btn" onclick="closePaymentModal('bankTransferModal')">×</button>
+			<h3>Bank Transfer</h3>
+			<p style="font-size: 16px; color: #cfd6e2; margin-bottom: 15px;">Click the image to download the payment details</p>
+			<a href="{{ url_for('static', filename='images/bank-transfer.jpeg') }}" download="bank-transfer.jpeg">
+				<img src="{{ url_for('static', filename='images/bank-transfer.jpeg') }}" alt="Bank Transfer Details" style="width: 100%; max-width: 400px; border-radius: 12px; cursor: pointer; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+			</a>
+		</div>
+	</div>
+
+	<div class="modal" id="gcashModal">
+		<div class="thank-you" onclick="event.stopPropagation()">
+			<button class="close-btn" onclick="closePaymentModal('gcashModal')">×</button>
+			<h3>Gcash</h3>
+			<p style="font-size: 16px; color: #cfd6e2; margin-bottom: 15px;">Click the image to download the payment details</p>
+			<a href="{{ url_for('static', filename='images/gcash.jpeg') }}" download="gcash.jpeg">
+				<img src="{{ url_for('static', filename='images/gcash.jpeg') }}" alt="Gcash Details" style="width: 100%; max-width: 400px; border-radius: 12px; cursor: pointer; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+			</a>
+		</div>
+	</div>
+
+	<!-- BACKGROUND MUSIC -->
+	<audio id="background-music" loop>
+		<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+
+	{% block content %}
+	<!-- Content goes here -->
+	{% endblock %}
+
+	<!-- FOOTER
+	<footer class="footer">
+		<p>Made with ♥ by <strong>NgantenStory</strong></p>
+		<p class="backsound">Backsound by: Bruno Mars - Marry You</p>
+		<p class="copyright">© all rights reserved by NgantenStory</p>
+	</footer> -->
+
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+	<script>
+		// Set background image from URL parameter
+		const urlParams = new URLSearchParams(window.location.search);
+		const bgImage = urlParams.get('bg');
+		if (bgImage) {
+			const decodedBg = decodeURIComponent(bgImage);
+			document.querySelector('.fixed-background').style.backgroundImage = `linear-gradient(135deg, rgba(45, 74, 61, 0.7) 0%, rgba(26, 47, 36, 0.7) 100%), url('${decodedBg}')`;
+			document.querySelector('.fixed-background').style.backgroundSize = 'cover';
+			document.querySelector('.fixed-background').style.backgroundPosition = 'center';
+		}
+	</script>
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
