@@ -37,7 +37,146 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Setup video play functionality
     setupVideoPlayer();
+
+    // Setup RSVP functionality
+    setupRSVP();
+
+    // Setup payment modals
+    setupPaymentModals();
 });
+
+// Setup payment modals
+function setupPaymentModals() {
+    const bankBtn = document.getElementById('bankTransferBtn');
+    const gcashBtn = document.getElementById('gcashBtn');
+    const bankModal = document.getElementById('bankTransferModal');
+    const gcashModal = document.getElementById('gcashModal');
+
+    if (bankBtn && bankModal) {
+        bankBtn.addEventListener('click', function() {
+            bankModal.classList.add('active');
+        });
+
+        bankModal.addEventListener('click', function(e) {
+            if (e.target === bankModal) {
+                closePaymentModal('bankTransferModal');
+            }
+        });
+    }
+
+    if (gcashBtn && gcashModal) {
+        gcashBtn.addEventListener('click', function() {
+            gcashModal.classList.add('active');
+        });
+
+        gcashModal.addEventListener('click', function(e) {
+            if (e.target === gcashModal) {
+                closePaymentModal('gcashModal');
+            }
+        });
+    }
+}
+
+// Close payment modal
+function closePaymentModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+// Setup RSVP functionality
+function setupRSVP() {
+    let selectedOption = null;
+    
+    const acceptBtn = document.querySelector('.rsvp-gifts-section .pill.blue');
+    const declineBtn = document.querySelector('.rsvp-gifts-section .pill.cream');
+    const submitBtn = document.querySelector('.rsvp-gifts-section .submit');
+    const guestInput = document.querySelector('.rsvp-gifts-section input[type="number"]');
+    
+    if (!acceptBtn || !declineBtn || !submitBtn) return;
+    
+    // Handle Accept button
+    acceptBtn.addEventListener('click', function() {
+        selectedOption = 'accept';
+        acceptBtn.style.opacity = '1';
+        acceptBtn.style.transform = 'scale(1.05)';
+        declineBtn.style.opacity = '0.6';
+        declineBtn.style.transform = 'scale(1)';
+    });
+    
+    // Handle Decline button - submit immediately
+    declineBtn.addEventListener('click', function() {
+        selectedOption = 'decline';
+        showRegretMessage();
+    });
+    
+    // Handle Submit button
+    submitBtn.addEventListener('click', function() {
+        if (selectedOption === 'accept') {
+            const guestCount = guestInput.value || 1;
+            showThankYouMessage(guestCount);
+        } else if (!selectedOption) {
+            showModal('Reminder', 'Please select your presence option first.');
+        }
+    });
+    
+    // Show thank you message for acceptance
+    function showThankYouMessage(guestCount) {
+        const rsvpSection = document.querySelector('.rsvp-gifts-section');
+        rsvpSection.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
+                <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">Thank You!</h1>
+                <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
+                    We're thrilled you'll be joining us!<br>
+                    Your confirmation for ${guestCount} guest(s) has been received.
+                </p>
+                <p class="rsvp-gifts-subtitle">
+                    We can't wait to celebrate this special day with you.
+                </p>
+            </div>
+        `;
+    }
+    
+    // Show regret message for decline
+    function showRegretMessage() {
+        const rsvpSection = document.querySelector('.rsvp-gifts-section');
+        rsvpSection.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
+                <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">We'll Miss You</h1>
+                <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
+                    Thank you for letting us know.
+                </p>
+                <p class="rsvp-gifts-subtitle">
+                    We're sorry you won't be able to join us,<br>
+                    but we appreciate you taking the time to respond.
+                </p>
+            </div>
+        `;
+    }
+}
+
+// Show modal function
+function showModal(title, content) {
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+
+    
+    if (modal && modalTitle && modalContent) {
+        modalTitle.textContent = title;
+        modalContent.textContent = content;
+        modal.classList.add('active');
+    }
+}
+
+// Close modal function
+function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
 
 // Setup video player
 function setupVideoPlayer() {

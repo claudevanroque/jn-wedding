@@ -11,7 +11,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="thank-you">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h3 id="modalTitle">Reminder</h3>
+            <p class="message" id="modalContent">
+            We're so grateful for your response.<br>
+            We can't wait to celebrate with you!
+            </p>
+        </div>
+    </div>
+
+    <!-- PAYMENT MODALS -->
+    <div class="modal" id="bankTransferModal">
+        <div class="thank-you" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePaymentModal('bankTransferModal')">×</button>
+            <h3>Bank Transfer</h3>
+            <p style="font-size: 16px; color: #cfd6e2; margin-bottom: 15px;">Click the image to download the payment details</p>
+            <a href="images/bank-transfer.jpeg" download="bank-transfer.jpeg">
+                <img src="images/bank-transfer.jpeg" alt="Bank Transfer Details" style="width: 100%; max-width: 400px; border-radius: 12px; cursor: pointer; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+            </a>
+        </div>
+    </div>
+
+    <div class="modal" id="gcashModal">
+        <div class="thank-you" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePaymentModal('gcashModal')">×</button>
+            <h3>Gcash</h3>
+            <p style="font-size: 16px; color: #cfd6e2; margin-bottom: 15px;">Click the image to download the payment details</p>
+            <a href="images/gcash.jpeg" download="gcash.jpeg">
+                <img src="images/gcash.jpeg" alt="Gcash Details" style="width: 100%; max-width: 400px; border-radius: 12px; cursor: pointer; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+            </a>
+        </div>
+    </div>
     <!-- BACKGROUND MUSIC -->
     <audio id="background-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
@@ -307,8 +342,8 @@ more. That plants a fire in our hearts and brings peace to our minds.” </p>
                     <!-- glimpses section-->
                     
                     <div class="video-section">
-                        <h1 class="title">GLIMPSE</h1>
-                        <div class="subtitle">Pre-wedding shoot</div>
+                        <h1 class="video-title">GLIMPSE</h1>
+                        <div class="video-subtitle">Pre-wedding shoot</div>
 
                         <div class="video-frame">
                             <div class="video-text">
@@ -316,6 +351,45 @@ more. That plants a fire in our hearts and brings peace to our minds.” </p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- RSVP -->
+                    <div class="rsvp-gifts-section">
+                        <h1>RSVP</h1>
+                        <h2>Confirmation</h2>
+                        <p class="rsvp-gifts-subtitle">
+                            We could not wait to celebrate our big day with you.<br>
+                            So please kindly RSVP with the form below
+                        </p>
+
+                        <div class="label">Presence</div>
+                        <div class="group">
+                            <button class="pill blue">Accept with pleasure</button>
+                            <button class="pill cream">Decline with regret</button>
+                        </div>
+
+                        <div class="label">Total Guest (s)</div>
+                        <input type="number" value="1" min="1">
+
+                        <button class="submit">SUBMIT</button>
+                    </div>
+
+                    <!-- GIFTS -->
+                    <div class="rsvp-gifts-section">
+                        <h1>GIFTS</h1>
+
+                        <h2>Wedding</h2>
+                        <p class="rsvp-gifts-subtitle">
+                            We are already deeply grateful for all that we have; however, should you
+                            wish to give a gift to help us on our way, a monetary gift towards our
+                            future would be most appreciated.
+                        </p>
+
+                        <div class="group">
+                            <button class="pill blue" id="bankTransferBtn">Bank Transfer</button>
+                            <button class="pill blue" id="gcashBtn">Gcash</button>
+                        </div>
+                    </div>
+
 
                     <div class="jn-closing">
                         <img src="https://jkpnrsample.my.canva.site/justine-nica/_assets/media/896ad6e09ec0d215517a6bda54ae51d5.jpg" alt="Closing" class="jn-closing-image">

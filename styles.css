@@ -14,6 +14,55 @@ html {
     overflow-x: hidden;
 }
 
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    place-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: grid;
+}
+
+.thank-you {
+    background: #1f3554;
+    width: 90%;
+    max-width: 520px;
+    border-radius: 24px;
+    padding: 60px 30px;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    cursor: pointer;
+    color: #cfd6e2;
+    background: none;
+    border: none;
+}
+
+.modal h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.message {
+    font-size: 20px;
+    color: #ddd;
+    line-height: 1.6;
+}
+
 body {
     font-family: normal, 'Cormorant Garamond', serif;
     color: #333;
@@ -4356,25 +4405,25 @@ body {
 }
 
 .wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 20px;
-  text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    text-align: center;
 }
 
 /* Title */
 .title {
-  letter-spacing: 0.5em;
-  font-size: 42px;
-  color: var(--text-main);
-  margin-bottom: 8px;
+    letter-spacing: 0.5em;
+    font-size: 42px;
+    color: var(--text-main);
+    margin-bottom: 8px;
 }
 
 .subtitle {
-  font-family: "Allura", cursive;
-  font-size: 32px;
-  color: #3f4a5a;
-  margin-bottom: 50px;
+    font-family: "Allura", cursive;
+    font-size: 32px;
+    color: #3f4a5a;
+    margin-bottom: 30px;
 }
 
 /* Video container */
@@ -4488,12 +4537,12 @@ body {
 .video-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: 60px 20px;
     text-align: center;
     background-color: #F6F4EF;
 }
 
-.title {
+.video-title {
     margin-top: -40px;
     letter-spacing: 0.5em;
     font-size: 42px;
@@ -4501,7 +4550,7 @@ body {
     font-family: Didot, serif;
 }
 
-.subtitle {
+.video-subtitle {
     margin-top: -40px;
     font-family: "Playlist Script", cursive;
     font-size: 35px;
@@ -4583,6 +4632,105 @@ body {
     margin-left: 5px;
 }
 
+.rsvp-gifts-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.bg-title {
+    letter-spacing: 15px;
+    color: rgba(255,255,255,0.15);
+    pointer-events: none;
+}
+
+
+.rsvp-gifts-section h1 {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 15px;
+    font-size: 90px;
+    color: rgba(255,255,255,0.15);
+}
+
+.rsvp-gifts-section h2 {
+    font-size: 40px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    margin-left: -25px;
+    margin-top: -50px;
+    color: rgb(206, 227, 253);
+}
+
+.rsvp-gifts-subtitle {
+    font-style: italic;
+    font-size: 18px;
+    color: #cfd6e2;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    
+}
+
+.label {
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 14px;
+    color: rgb(206, 227, 253);
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 50px;
+}
+
+.pill {
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 90px;
+    padding: 10px 10px;
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    font-family: "Playfair Display", serif;
+}
+
+.blue {
+    background: #d6ebff;;
+    color: #000;
+}
+
+.cream {
+    background: #f2f1ea;
+    color: #000;
+}
+
+input[type="number"] {
+    width: 80%;
+    border-radius: 999px;
+    padding: 10px 10px;
+    font-size: 22px;
+    border: none;
+    text-align: center;
+    background: f2f1ea;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 10px;
+}
+
+.submit {
+    background: #d6ebff;
+    border-radius: 999px;
+    padding: 14px 44px;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
 @media (max-width: 768px) {
     .title {
         font-size: 30px;
@@ -4604,15 +4752,24 @@ body {
 }
 
 @media (max-width: 460px) {
-    .title {
+    .vide-title {
         margin-top: -40px;
         letter-spacing: 0.5em;
         font-size: 42px;
     }
 
-    .subtitle {
+    .video-subtitle {
         margin-top: -40px;
         font-size: 35px;
     }
+    .rsvp-gifts-subtitle {
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+
+    .label {
+        font-size: 18px;
+    }
 }
+
 
