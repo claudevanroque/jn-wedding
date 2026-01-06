@@ -9,7 +9,7 @@
 
 		<div class="hero-content">
 			<p class="dear">Dear,</p>
-			<h1 class="guest-name">Atty. Camille Nica Roque</h1>
+			<h1 class="guest-name"> {{ rsvp.title if rsvp and rsvp.title else "" }} {{ rsvp.guest_name if rsvp else "Camille Nica Roque" }}</h1>
 			<p class="invitation-text">You Are Invited!</p>
 
 			<div class="wedding-info">
@@ -37,16 +37,16 @@
 				<!-- OUR WEDDING SECTION -->
 				<section class="justine-nica-section" id="justine-nica">
 					<!-- intro section -->
-					<div class="jn-couple-intro" style="background-image: url('{{ url_for('static', filename='images/imageone.jpeg') }}');">
+					<div class="jn-couple-intro" style="background-image: url('https://res.cloudinary.com/drd1pnist/image/upload/v1767663390/imageone_q6hugo.jpg');">
 						<h2 class="jn-couple-names">Justine & Nica</h2>
 						<p class="jn-wedding-date">02.28.2026</p>
-						<img src="https://jkpnrsample.my.canva.site/justine-nica/_assets/media/d9c668d8aadfce7d8ef3fdb70ff68cad.png" alt="decorative" class="decorative-icon black-filter">
+						<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767663782/JNLOGO_sipfmm.png" alt="decorative" class="decorative-icon black-filter">
 					</div>
 
 					<!-- quote section -->
 					<div class="jn-quote-section">
 						<div class="jn-quote-heart" aria-hidden="true">
-							<img src="{{ url_for('static', filename='images/j-n-heart.png') }}" alt="" class="jn-heart">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767663817/j-n-heart_i1csiu.png" alt="" class="jn-heart">
 						</div>
 						<p class="jn-quote-text">"When the time is right, I, THE LORD,<br> will make it happen."</p>
 						<p class="jn-quote-source">Isaiah 60:22</p>
@@ -78,7 +78,7 @@
 					<!-- quote section two -->
 					<div class="jn-quote-section-two">
 						<div class="jn-quote-section-two-image">
-							<img src="{{ url_for('static', filename='images/jn-1.jpg') }}" alt="We Found Love">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767664131/imagetwo_qpamra.jpg" alt="We Found Love">
 						</div>
 						
 						<div class="jn-quote-content-box">                            
@@ -87,7 +87,7 @@
 						</div>
 
 						<div class="jn-quote-image-middle">
-							<img src="{{ url_for('static', filename='images/couple-bird.png') }}" alt="Decorative birds" class="jn-quote-bird-img">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767664165/couple-bird_zxzslv.png" alt="Decorative birds" class="jn-quote-bird-img">
 						</div>
 
 						<div class="jn-quote-content-box-two">                            
@@ -97,7 +97,7 @@ more. That plants a fire in our hearts and brings peace to our minds." </p>
 						</div>
 						
 						<div class="jn-quote-section-two-image-bottom">
-							<img src="{{ url_for('static', filename='images/jn-2.jpg') }}" alt="One Love">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767664129/imagethree_mzu9kd.jpg" alt="One Love">
 						</div>
 					</div>
 
@@ -105,14 +105,14 @@ more. That plants a fire in our hearts and brings peace to our minds." </p>
 					<div class="jn-event-details">
 						<div class="jn-event-block">
 							<h4>The Ceremony</h4>
-							<img src="{{ url_for('static', filename='images/church.png') }}" alt="Church" class="jn-event-image">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767664167/church_y26gcn.png" alt="Church" class="jn-event-image">
 							<p class="jn-venue">San Isidro Labrador Parish Church, Gusa, Cagayan de Oro City</p>
 							<a href="https://www.google.com/maps?q=San+Isidro+Labrador+Parish+Church,+Gusa,+Cagayan+de+Oro+City" class="jn-directions-btn" target="_blank">How to get there</a>
 						</div>
 
 						<div class="jn-event-block reception-block">
 							<h4>The Reception</h4>
-							<img src="{{ url_for('static', filename='images/reception.png') }}" alt="Reception" class="jn-event-image">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767663810/reception_feep3q.png" alt="Reception" class="jn-event-image">
 							<p class="jn-venue">Paras Hilltop Purok 4-A, Gusa, Cagayan de Oro City</p>
 							<a href="https://www.google.com/maps?q=Paras+Hilltop+Purok+4-A,+Gusa,+Cagayan+de+Oro+City" class="jn-directions-btn" target="_blank">How to get there</a>
 						</div>
@@ -124,7 +124,7 @@ more. That plants a fire in our hearts and brings peace to our minds." </p>
 						<h3>Wedding Details</h3>
 						
 						<div class="jn-detail-item">
-							<img src="{{ url_for('static', filename='images/bride.png') }}" alt="Bride" class="jn-detail-icon">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767664171/bride_dnplw2.png" alt="Bride" class="jn-detail-icon">
 							<h5>CEREMONY</h5>
 							<p>Eyes Up, <strong>Phones Down:</strong>
 								We promise, our photographers won't miss a beat. 
@@ -133,7 +133,7 @@ more. That plants a fire in our hearts and brings peace to our minds." </p>
 						</div>
 
 						<div class="jn-detail-item">
-							<img src="{{ url_for('static', filename='images/couple.png') }}" alt="Couple" class="jn-detail-icon">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767666931/couple_oyfh6c.png" alt="Couple" class="jn-detail-icon">
 							<h5>Attire</h5>
 							<p><strong>Midnight Blue & Barong</strong>: Let's coordinate! We're dreaming
 								of a sea of Midnight Blue gowns and Piña Barongs paired with black
@@ -141,7 +141,7 @@ more. That plants a fire in our hearts and brings peace to our minds." </p>
 						</div>
 
 						<div class="jn-detail-item">
-							<img src="{{ url_for('static', filename='images/girls.png') }}" alt="Girls" class="jn-detail-icon">
+							<img src="https://res.cloudinary.com/drd1pnist/image/upload/v1767664159/girls_lejzbo.png" alt="Girls" class="jn-detail-icon">
 							<h5>Kids</h5>
 							<p>As much as we love your little ones, 
 								we're keeping this evening an <strong>adults-only</strong> affair to ensure a relaxed and focused celebration. 

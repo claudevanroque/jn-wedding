@@ -88,6 +88,8 @@ function closePaymentModal(modalId) {
 // Setup RSVP functionality
 function setupRSVP() {
     let selectedOption = null;
+    const pathParts = window.location.pathname.split('/');
+    const guestId = pathParts[pathParts.length - 1];
     
     const acceptBtn = document.querySelector('.rsvp-gifts-section .pill.blue');
     const declineBtn = document.querySelector('.rsvp-gifts-section .pill.cream');
@@ -95,6 +97,9 @@ function setupRSVP() {
     const guestInput = document.querySelector('.rsvp-gifts-section input[type="number"]');
     
     if (!acceptBtn || !declineBtn || !submitBtn) return;
+    
+    // Check for existing RSVP on page load
+    checkExistingRSVP();
     
     // Handle Accept button
     acceptBtn.addEventListener('click', function() {
@@ -123,37 +128,160 @@ function setupRSVP() {
     
     // Show thank you message for acceptance
     function showThankYouMessage(guestCount) {
-        const rsvpSection = document.querySelector('.rsvp-gifts-section');
-        rsvpSection.innerHTML = `
-            <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
-                <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">Thank You!</h1>
-                <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
-                    We're thrilled you'll be joining us!<br>
-                    Your confirmation for ${guestCount} guest(s) has been received.
-                </p>
-                <p class="rsvp-gifts-subtitle">
-                    We can't wait to celebrate this special day with you.
-                </p>
-            </div>
-        `;
+        // Submit RSVP to the new route
+        console.log(guestId)
+        const guestName = document.querySelector('.guest-name').textContent || 'Guest';
+        
+        fetch(`/${guestId}/rsvp`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                guest_name: guestName,
+                response: 'accept',
+                guest_count: parseInt(guestCount)
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    // console.log('Error data:', data.error);
+                    // showModal('Error', data.error);
+                    throw new Error(data.error || 'There was an error submitting your RSVP. Please try again.');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('RSVP submitted successfully:', data);
+            // Show success message
+            const rsvpSection = document.querySelector('.rsvp-gifts-section');
+            rsvpSection.innerHTML = `
+                <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
+                    <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">Thank You!</h1>
+                    <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
+                        We're thrilled you'll be joining us!<br>
+                        Your confirmation for ${guestCount} guest(s) has been received.
+                    </p>
+                    <p class="rsvp-gifts-subtitle">
+                        We can't wait to celebrate this special day with you.
+                    </p>
+                </div>
+            `;
+        })
+        .catch(error => {
+            console.error('Error submitting RSVP:', error.message || error);
+            showModal('Error', error.message);
+        });
     }
     
     // Show regret message for decline
     function showRegretMessage() {
-        const rsvpSection = document.querySelector('.rsvp-gifts-section');
-        rsvpSection.innerHTML = `
-            <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
-                <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">We'll Miss You</h1>
-                <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
-                    Thank you for letting us know.
-                </p>
-                <p class="rsvp-gifts-subtitle">
-                    We're sorry you won't be able to join us,<br>
-                    but we appreciate you taking the time to respond.
-                </p>
-            </div>
-        `;
+        // Submit RSVP to the new route
+        const guestName = document.querySelector('.guest-name').textContent || 'Guest';
+        
+        fetch(`/${currentGuestId}/rsvp`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                guest_name: guestName,
+                response: 'decline',
+                guest_count: 0
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to submit RSVP');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('RSVP decline submitted successfully:', data);
+            // Show regret message
+            const rsvpSection = document.querySelector('.rsvp-gifts-section');
+            rsvpSection.innerHTML = `
+                <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
+                    <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">We'll Miss You</h1>
+                    <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
+                        Thank you for letting us know.
+                    </p>
+                    <p class="rsvp-gifts-subtitle">
+                        We're sorry you won't be able to join us,<br>
+                        but we appreciate you taking the time to respond.
+                    </p>
+                </div>
+            `;
+        })
+        .catch(error => {
+            console.error('Error submitting RSVP:', error);
+            showModal('Error', 'There was an error submitting your RSVP. Please try again.');
+        });
     }
+}
+
+// Check for existing RSVP
+function checkExistingRSVP() {
+    const pathParts = window.location.pathname.split('/');
+    const guestId = pathParts[pathParts.length - 1]; 
+    
+    if (!guestId || guestId === 'invitation') {
+        console.log('No guest ID found in URL');
+        return;
+    }
+    
+    currentGuestId = guestId;
+    
+    fetch(`/${guestId}/rsvp`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else if (response.status === 404) {
+                // No existing RSVP, that's fine
+                return null;
+            } else {
+                throw new Error('Failed to check RSVP status');
+            }
+        })
+        .then(data => {
+            if (data) {
+                // Guest has already RSVP'd
+                // console.log('Existing RSVP found:', data);
+                const rsvpSection = document.querySelector('.rsvp-gifts-section');
+                if (data.response === 'accept') {
+                    rsvpSection.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
+                            <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">Thank You!</h1>
+                            <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
+                                Your RSVP has been received.<br>
+                                We're thrilled you'll be joining us with ${data.guest_count} guest(s)!
+                            </p>
+                            <p class="rsvp-gifts-subtitle">
+                                We can't wait to celebrate this special day with you.
+                            </p>
+                        </div>
+                    `;
+                } else if (data.response === 'decline') {
+                    rsvpSection.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
+                            <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">RSVP Received</h1>
+                            <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
+                                Thank you for letting us know.
+                            </p>
+                            <p class="rsvp-gifts-subtitle">
+                                We're sorry you won't be able to join us,<br>
+                                but we appreciate you taking the time to respond.
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error checking RSVP:', error);
+        });
 }
 
 // Show modal function
@@ -191,7 +319,7 @@ function setupVideoPlayer() {
             video.muted = false;
             
             const source = document.createElement('source');
-            source.src = '/static/The Most Cinematic Wedding Trailer You ll Ever See.mp4';
+            source.src = 'https://res.cloudinary.com/drd1pnist/video/upload/v1767669594/JN-Teaser-Vid_bd3trr.mp4';
             source.type = 'video/mp4';
             video.appendChild(source);
             

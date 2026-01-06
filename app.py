@@ -2,8 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from models import db
 from models.rsvp import RSVP
 from dotenv import load_dotenv
-from google_sheets import load_guest_list, sync_rsvps_to_sheet
+from google_sheets import load_guest_list, sync_rsvps_to_sheet, get_guest_list_sheet, get_responses_sheet
 import os
+from datetime import datetime
 
 load_dotenv()
 
@@ -20,35 +21,59 @@ with app.app_context():
 
 @app.route('/')
 def home():
+    return render_template('invitation.html', rsvp=None)
+
+@app.route('/<id>')
+def invitation(id):
+    rsvp = RSVP.query.filter_by(uid=id).first()
+    if rsvp:
+        return render_template('invitation.html', rsvp=rsvp)
     return render_template('invitation.html')
 
-
-
-@app.route('/api/rsvp', methods=['POST'])
-def submit_rsvp():
+@app.route('/<id>/rsvp', methods=['GET', 'POST'])
+def submit_rsvp_by_id(id):
+    """Get or submit RSVP for a specific guest by their ID"""
+    if request.method == 'GET':
+        # Return existing RSVP data
+        rsvp = RSVP.query.filter_by(uid=id).first()
+        if rsvp:
+            return jsonify(rsvp.to_dict()), 200
+        return jsonify({'error': 'RSVP not found'}), 404
+    
+    # POST method
     data = request.get_json()
     
-    new_rsvp = RSVP(
-        guest_name=data.get('guest_name', 'Anonymous'),
-        response=data.get('response'),
-        guest_count=data.get('guest_count', 1)
-    )
+    # Find existing RSVP by ID
+    existing_rsvp = RSVP.query.filter_by(uid=id).first()
     
-    db.session.add(new_rsvp)
-    db.session.commit()
-    
-    return jsonify({'message': 'RSVP submitted successfully', 'uid': new_rsvp.uid}), 201
+    if existing_rsvp and data.get('guest_count', 0) > existing_rsvp.pax:
+        return jsonify({'error': 'Your Guest count exceeds allowed Pax'}), 400
 
-@app.route('/api/rsvps', methods=['GET'])
-def get_rsvps():
-    rsvps = RSVP.query.order_by(RSVP.created_at.desc()).all()
-    return jsonify([rsvp.to_dict() for rsvp in rsvps])
+    if existing_rsvp:
+        # Update existing RSVP
+        existing_rsvp.response = data.get('response')
+        existing_rsvp.guest_count = data.get('guest_count', 1)
+        existing_rsvp.response_date = datetime.utcnow()
+        db.session.commit()
+        
+        # Sync to Google Sheets
+        try:
+            rsvps = RSVP.query.all()
+            sync_rsvps_to_sheet(rsvps)
+        except Exception as e:
+            print(f"Warning: Failed to sync to Google Sheets: {e}")
+        
+        return jsonify({'message': 'RSVP updated successfully', 'uid': existing_rsvp.uid}), 200
+    else:
+        # Don't create new RSVPs - only update existing ones
+        return jsonify({'error': 'RSVP not found. Please contact the wedding organizers.'}), 404
+
 
 @app.route('/api/load-from-sheet', methods=['GET'])
 def load_from_sheet():
     """Load guest list from Google Sheets and import to database"""
     try:
-        guests = load_guest_list()
+        guests = get_guest_list_sheet().get_all_records()
         imported_count = 0
         skipped_count = 0
         imported_list = []
@@ -94,14 +119,44 @@ def load_from_sheet():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
-@app.route('/api/sync-to-sheet', methods=['POST'])
+@app.route('/api/test-google-sheets', methods=['GET'])
+def test_google_sheets():
+    """Test Google Sheets connection"""
+    try:
+        worksheet = get_responses_sheet()
+        sheet_title = worksheet.title
+        return jsonify({
+            'status': 'success',
+            'sheet_title': sheet_title,
+            'message': 'Google Sheets connection successful'
+        }), 200
+    except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        return jsonify({
+            'status': 'error',
+            'error': str(e),
+            'traceback': error_details
+        }), 500
+
+@app.route('/api/sync-to-sheet', methods=['GET'])
 def sync_to_sheet():
     """Sync all RSVPs to Google Sheets"""
     try:
         rsvps = RSVP.query.all()
+        print(f"Found {len(rsvps)} RSVPs to sync")
+        
+        if not rsvps:
+            return jsonify({'message': 'No RSVPs to sync'}), 200
+
+        
         sync_rsvps_to_sheet(rsvps)
         return jsonify({'message': f'Synced {len(rsvps)} RSVPs to Google Sheets'}), 200
     except Exception as e:
+        import traceback
+        print(f"Error syncing to Google Sheets: {str(e)}")
+        print("Full traceback:")
+        traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
