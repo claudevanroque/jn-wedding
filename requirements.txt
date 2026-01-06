@@ -3,3 +3,4 @@ flask-sqlalchemy
 python-dotenv
 gspread
 google-auth
+gunicorn
