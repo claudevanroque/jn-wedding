@@ -1,0 +1,13 @@
+name: First CI Test
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CI is alive
+        run: echo "🎉 GitHub Actions is working!"
