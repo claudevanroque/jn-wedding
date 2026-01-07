@@ -8,11 +8,24 @@ from datetime import datetime
 
 load_dotenv()
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app = Flask(__name__, instance_relative_config=True)
+
+# Ensure instance folder exists
+os.makedirs(app.instance_path, exist_ok=True)
+
+# Configure database with absolute path
+db_path = os.getenv('SQLALCHEMY_DATABASE_URI', 'sqlite:///wedding.db')
+if db_path.startswith('sqlite:///') and not db_path.startswith('sqlite:////') and not os.path.isabs(db_path.replace('sqlite:///', '')):
+    # Convert relative path to absolute path in instance folder
+    db_filename = db_path.replace('sqlite:///', '')
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(app.instance_path, db_filename)}'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_path
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS') == 'True'
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
+# Initialize db with app
 db.init_app(app)
 
 # Create database tables
@@ -160,4 +173,4 @@ def sync_to_sheet():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run()
