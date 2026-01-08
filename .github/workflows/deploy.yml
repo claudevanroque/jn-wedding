@@ -20,7 +20,19 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /home/claude/apps/jn-wedding
+          set -euo pipefail
+
+          APP_DIR="/home/claude/apps/jn-wedding"
+          REPO="git@github.com:claudevanroque/jn-wedding.git"
+
+          if [ ! -d "$APP_DIR/.git" ]; then
+            mkdir -p "$(dirname "$APP_DIR")"
+            git clone "$REPO" "$APP_DIR"
+          fi
+
+          cd "$APP_DIR"
+          git fetch origin main
+          git checkout main
           git pull origin main
-          docker compose down
+          docker compose down || true
           docker compose up -d --build
