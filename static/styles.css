@@ -58,12 +58,19 @@ body {
 
 /* Fixed Background for Wedding Section */
 .fixed-background {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #2d4a3d 0%, #1a2f24 100%);
-    background-size: cover;
+    z-index: -1;
+    background-image:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.25)),
+        url('https://res.cloudinary.com/drd1pnist/image/upload/v1767876230/moments-7_bximtb.jpg');
+    background-size: contain;
     background-position: center;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position:absolute
 }
 
 /* Scrollable Content Wrapper */
@@ -705,7 +712,7 @@ body {
 
 .closing-photos .photo img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     object-fit: cover;
 }
@@ -1067,9 +1074,9 @@ body {
 }
 
 .jn-quote-text-styled {
-    font-size: 22px;
+    font-size: 16px;
     color: #2d4a3d;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     line-height: 1.8;
     font-family: 'Playfair Display', serif;
     font-weight: 400;
@@ -1080,12 +1087,12 @@ body {
 }
 
 .jn-quote-author {
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
     font-weight: 500;
     font-family: 'Playfair Display', serif;
     text-align: right;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     font-style: normal;
     opacity: 0;
     transform: translateX(-80px);
@@ -1166,7 +1173,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: top;
-    gap: 30px;
+    gap: 20px;
     overflow: hidden;
 }
 
@@ -1190,7 +1197,7 @@ body {
     font-size: 30px;
     color: white;
     font-family: normal, 'Playfair Display', serif;
-    /* margin-bottom: 40px; */
+    margin-top: 40px; 
     font-weight: 400;
 }
 
@@ -1213,7 +1220,8 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     max-width: 600px;
-    margin: 0 auto;
+    margin-top: -50px;
+    /* margin: 0 auto; */
 }
 
 .jn-countdown-section.scroll-animate .jn-countdown {
@@ -2161,7 +2169,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 40px;
+    /* gap: 40px; */
     flex-wrap: wrap;
 }
 
