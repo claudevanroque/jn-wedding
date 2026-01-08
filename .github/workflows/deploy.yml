@@ -22,7 +22,7 @@ jobs:
         script: |
           set -euo pipefail
 
-          APP_DIR="/home/claude/apps/jn-wedding"
+          APP_DIR="/home/claude/projects/jn-wedding"
           REPO="git@github.com:claudevanroque/jn-wedding.git"
 
           if [ ! -d "$APP_DIR/.git" ]; then
