@@ -752,8 +752,8 @@ body {
     bottom: 30px;
     right: 30px;
     z-index: 100;
-    background-color: #2d4a3d;
-    color: white;
+    background-color: #F7F7F4;
+    color: rgb(35, 49, 78);
     border: none;
     border-radius: 50%;
     width: 60px;
@@ -768,7 +768,7 @@ body {
 }
 
 .music-control:hover {
-    background-color: #1a2f24;
+    background-color: #e0e0d8;
     transform: scale(1.1);
 }
 
@@ -1391,7 +1391,7 @@ body {
     font-size: 18px;
     color: rgb(35, 49, 78);
     font-family: Montserrat, sans-serif;
-    font-weight: 300;
+    font-weight: 800;
 }
 
 .jn-detail-item p {
@@ -1403,6 +1403,7 @@ body {
     font-family: Montserrat, sans-serif;
     padding: 0 35px;
     margin-left: 15px;
+    text-align: justify;
 }
 
 .jn-closing {
@@ -2266,7 +2267,11 @@ body {
   max-width: 960px;
   margin: 0 auto;
   aspect-ratio: 16 / 9;
-  background: url("https://images.unsplash.com/photo-1520974735194-6c2c9a1a8fbd?q=80&w=1920") center / cover no-repeat;
+  background-image: url("https://res.cloudinary.com/drd1pnist/image/upload/v1767920226/jn-teaser-poster_t6otot.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   box-shadow: 0 30px 60px rgba(0,0,0,0.2);
   border-radius: 2px;
   overflow: hidden;
@@ -2319,7 +2324,8 @@ body {
 .play-btn {
   width: 80px;
   height: 80px;
-  background: #ff0000;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2355,6 +2361,8 @@ body {
   .play-btn {
 	width: 60px;
 	height: 60px;
+	background: rgba(255, 255, 255, 0.05);
+	border: 2px solid rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -2394,7 +2402,11 @@ body {
     max-width: 960px;
     margin: 0 auto;
     aspect-ratio: 16 / 9;
-    background: url("https://images.unsplash.com/photo-1520974735194-6c2c9a1a8fbd?q=80&w=1920") center / cover no-repeat;
+    background-image: url("https://res.cloudinary.com/drd1pnist/image/upload/v1767920226/jn-teaser-poster_t6otot.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
     box-shadow: 0 30px 60px rgba(0,0,0,0.2);
     border-radius: 2px;
     overflow: hidden;
@@ -2445,7 +2457,8 @@ body {
 .play-btn {
     width: 80px;
     height: 80px;
-    background: #ff0000;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2579,6 +2592,8 @@ input[type="number"] {
     .play-btn {
         width: 60px;
         height: 60px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.2);
     }
 }
 

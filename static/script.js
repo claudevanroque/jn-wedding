@@ -317,7 +317,8 @@ function setupVideoPlayer() {
             video.height = '100%';
             video.controls = true;
             video.muted = false;
-            
+            video.poster = 'https://res.cloudinary.com/drd1pnist/image/upload/v1767920226/jn-teaser-poster_t6otot.jpg';
+
             const source = document.createElement('source');
             source.src = 'https://res.cloudinary.com/drd1pnist/video/upload/v1767669594/JN-Teaser-Vid_bd3trr.mp4';
             source.type = 'video/mp4';
@@ -335,6 +336,23 @@ function setupVideoPlayer() {
                         bgMusic.pause();
                     }
                 }).catch(e => console.error('Play failed:', e.message));
+            });
+            
+            // Pause music when video resumes from pause
+            video.addEventListener('play', function() {
+                const bgMusic = document.getElementById('background-music');
+                if (bgMusic) {
+                    bgMusic.pause();
+                }
+            });
+            
+            // Resume background music when video is paused
+            video.addEventListener('pause', function() {
+                const bgMusic = document.getElementById('background-music');
+                const musicBtn = document.querySelector('.music-control.playing');
+                if (bgMusic && musicBtn && !video.ended) {
+                    bgMusic.play();
+                }
             });
             
             // Resume background music when video ends

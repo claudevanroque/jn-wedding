@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from google_sheets import load_guest_list, sync_rsvps_to_sheet, get_guest_list_sheet, get_responses_sheet
 import os
 from datetime import datetime
+import uuid
 
 load_dotenv()
 
@@ -106,9 +107,14 @@ def load_from_sheet():
                 continue
             
             # Create RSVP entry from sheet data
+            guest_name_clean = guest_name or 'Anonymous'
+            first_name = guest_name_clean.split(' ')[0] if guest_name_clean else 'Guest'
+            custom_uid = f"{str(uuid.uuid4())}-{first_name}"
+            
             new_rsvp = RSVP(
+                uid=custom_uid,
                 title=guest.get('Title', None),
-                guest_name=guest_name or 'Anonymous',
+                guest_name=guest_name_clean,
                 pax=int(guest.get('Pax', 1)),
                 response=guest.get('Response') or 'pending',
                 guest_count=int(guest.get('Guest Count') or guest.get('Count', 0))
@@ -171,6 +177,77 @@ def sync_to_sheet():
         print("Full traceback:")
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/add-guest', methods=['POST'])
+def add_guest():
+    """Add a new guest to the database"""
+    # Check for admin token
+    token = request.headers.get('X-Admin-Token')
+    if token != os.getenv('ADMIN_TOKEN'):
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    try:
+        data = request.get_json()
+        
+        guest_name = data.get('guest_name')
+        if not guest_name:
+            return jsonify({'error': 'guest_name is required'}), 400
+        
+        # Check if guest already exists
+        existing = RSVP.query.filter_by(guest_name=guest_name).first()
+        if existing:
+            return jsonify({'error': 'Guest already exists', 'uid': existing.uid}), 400
+        
+        # Generate custom UID with first name
+        first_name = guest_name.split(' ')[0] if guest_name else 'Guest'
+        custom_uid = f"{str(uuid.uuid4())}-{first_name}"
+        
+        # Create new RSVP entry
+        new_rsvp = RSVP(
+            uid=custom_uid,
+            title=data.get('title', None),
+            guest_name=guest_name,
+            pax=int(data.get('pax', 1)),
+            response=data.get('response', 'pending'),
+            guest_count=int(data.get('guest_count', 0))
+        )
+        
+        db.session.add(new_rsvp)
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Guest added successfully',
+            'uid': new_rsvp.uid,
+            'guest_name': new_rsvp.guest_name
+        }), 201
+    except Exception as e:
+        db.session.rollback()
+        import traceback
+        print(f"Error adding guest: {str(e)}")
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/empty-database/vanrox-jn', methods=['POST'])
+def empty_database():
+    """Clear all RSVPs from the database"""
+    # Check for admin token
+    token = request.headers.get('X-Admin-Token')
+    if token != os.getenv('ADMIN_TOKEN'):
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    try:
+        # Delete all RSVP records
+        RSVP.query.delete()
+        db.session.commit()
+        return jsonify({'message': 'Database emptied successfully'}), 200
+    except Exception as e:
+        db.session.rollback()
+        import traceback
+        print(f"Error emptying database: {str(e)}")
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
 
 if __name__ == '__main__':
     app.run()

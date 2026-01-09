@@ -143,7 +143,16 @@ def sync_rsvps_to_sheet(rsvps):
         # Batch write headers and all rows at once
         append_rows_batch(worksheet, all_rows)
         
+        # Add total row
+        total_attending = sum(rsvp.guest_count for rsvp in rsvps)
+        total_row = [''] * len(headers)
+        total_row[list(column_mapping.values()).index('Guest Name')] = 'TOTAL'
+        total_row[list(column_mapping.values()).index('Number Attending')] = total_attending
+        
+        append_rows_batch(worksheet, [total_row])
+        
         print(f"Successfully wrote headers and {rows_written} data rows to GUEST RESPONSE worksheet")
+        print(f"Total Number Attending: {total_attending}")
         
     except Exception as e:
         print(f"Error in sync_rsvps_to_sheet: {str(e)}")

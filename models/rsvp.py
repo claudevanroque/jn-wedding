@@ -3,7 +3,7 @@ from models import db
 import uuid
 
 class RSVP(db.Model):
-    uid = db.Column(db.String(36), primary_key=True, unique=True, default=lambda: str(uuid.uuid4()))
+    uid = db.Column(db.String(255), primary_key=True, unique=True)
     title = db.Column(db.String(10), nullable=True)
     guest_name = db.Column(db.String(200), nullable=False)
     pax = db.Column(db.Integer, default=1)
