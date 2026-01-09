@@ -1,0 +1,39 @@
+# Environment variables
+.env
+credentials.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Ignore image files outside the static directory
+images
+# But allow them in static/
+!static/**
+index_*.html
+# The Most Cinematic Wedding Trailer You ll Ever See.mp4
+credentials.json
+.dockerignore
+.venv
+__pycache__
+instance
