@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from models import db
 from models.rsvp import RSVP
 from dotenv import load_dotenv
-from google_sheets import load_guest_list, sync_rsvps_to_sheet, get_guest_list_sheet, get_responses_sheet
+from google_sheets import sync_rsvps_to_sheet, get_guest_list_sheet, get_responses_sheet, sync_invitation_letters_to_sheet
 import os
 from datetime import datetime
 import uuid
@@ -170,6 +170,7 @@ def sync_to_sheet():
 
         
         sync_rsvps_to_sheet(rsvps)
+        sync_invitation_letters_to_sheet(rsvps)
         return jsonify({'message': f'Synced {len(rsvps)} RSVPs to Google Sheets'}), 200
     except Exception as e:
         import traceback

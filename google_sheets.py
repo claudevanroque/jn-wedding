@@ -74,6 +74,69 @@ def append_rows_batch(worksheet, rows):
     """Append multiple rows at once with retry on quota errors"""
     worksheet.append_rows(rows)
 
+def generate_invitation_letter(guest_name, pax, rsvp_link):
+    """Generate an invitation letter for a guest"""
+    first_name = guest_name.split()[0] if guest_name else 'Guest'
+    
+    letter = f"""Hiii {first_name} ! ☺️
+    
+Warm greetings!
+
+We're delighted to share our Online Wedding Invitation as we celebrate our union on February 28, 2026. We have reserved {pax} seat(s) for you, and we would be truly honored by your presence.
+Kindly confirm your attendance through the RSVP link below on or before JANUARY 16, 2026.
+
+Thank you, and God bless! 🙏🏼
+
+{rsvp_link}"""
+    
+    return letter
+
+def sync_invitation_letters_to_sheet(rsvps):
+    """Write invitation letters to INVITATION LETTERS worksheet"""
+    try:
+        print("Starting invitation letters sync...")
+        
+        worksheet = get_google_sheet('INVITATION LETTERS')
+        print("Connected to INVITATION LETTERS worksheet successfully")
+        
+        # Clear existing data
+        clear_worksheet(worksheet)
+        print("Cleared existing data")
+        
+        if not rsvps:
+            print("No RSVPs to sync")
+            return
+        
+        # Define headers
+        headers = ['Guest Name', 'Invitation Letter']
+        
+        # Prepare all rows including headers
+        all_rows = [headers]
+        
+        # Generate invitation letter for each guest
+        letters_written = 0
+        for rsvp in rsvps:
+            first_name = rsvp.guest_name.split()[0] if rsvp.guest_name else 'Guest'
+            base_url = os.getenv('BASE_URL', 'https://ourforeverstory.online')
+            rsvp_link = f"{base_url}/{rsvp.uid}"
+            
+            letter = generate_invitation_letter(rsvp.guest_name, rsvp.pax, rsvp_link)
+            
+            row = [rsvp.guest_name, letter]
+            all_rows.append(row)
+            letters_written += 1
+        
+        # Batch write all rows at once
+        append_rows_batch(worksheet, all_rows)
+        
+        print(f"Successfully wrote {letters_written} invitation letters to INVITATION LETTERS worksheet")
+        
+    except Exception as e:
+        print(f"Error in sync_invitation_letters_to_sheet: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise
+
 def sync_rsvps_to_sheet(rsvps):
     """Write RSVP data to GUEST RESPONSE worksheet - export cleaned columns"""
     try:
@@ -153,6 +216,9 @@ def sync_rsvps_to_sheet(rsvps):
         
         print(f"Successfully wrote headers and {rows_written} data rows to GUEST RESPONSE worksheet")
         print(f"Total Number Attending: {total_attending}")
+        
+        # Also sync invitation letters
+        sync_invitation_letters_to_sheet(rsvps)
         
     except Exception as e:
         print(f"Error in sync_rsvps_to_sheet: {str(e)}")
