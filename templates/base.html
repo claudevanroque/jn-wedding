@@ -6,7 +6,7 @@
 	<meta property="og:title" content="Justine & Nica - Wedding Invitation" />
 	<meta property="og:description" content="Join us in celebrating our wedding." />
 	<meta property="og:image" content="https://res.cloudinary.com/drd1pnist/image/upload/v1767876230/moments-7_bximtb.jpg" />
-	<meta property="og:url" content="https://ourforeverstory.online/" />
+	<meta property="og:url" content="https://ourforeverstory.online/{{ rsvp.uid|join('-') if rsvp and rsvp.title else '' }}{{ rsvp.guest_name.split(' ')[0] if rsvp and rsvp.title else '' }}" />
 	<meta property="og:type" content="website" />
 	<title>{% block title %}Justine & Nica - Wedding Invitation{% endblock %}</title>
 	<link rel="icon" type="image/png" href="https://res.cloudinary.com/drd1pnist/image/upload/v1767663782/JNLOGO_sipfmm.png">
