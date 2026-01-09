@@ -83,11 +83,12 @@ def generate_invitation_letter(guest_name, pax, rsvp_link):
 Warm greetings!
 
 We're delighted to share our Online Wedding Invitation as we celebrate our union on February 28, 2026. We have reserved {pax} seat(s) for you, and we would be truly honored by your presence.
+
 Kindly confirm your attendance through the RSVP link below on or before JANUARY 16, 2026.
 
-Thank you, and God bless! 🙏🏼
+{rsvp_link}
 
-{rsvp_link}"""
+Thank you, and God bless! 🙏🏼"""
     
     return letter
 
