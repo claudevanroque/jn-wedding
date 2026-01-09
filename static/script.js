@@ -104,27 +104,81 @@ function setupRSVP() {
     // Handle Accept button
     acceptBtn.addEventListener('click', function() {
         selectedOption = 'accept';
+        acceptBtn.classList.add('emphasized');
         acceptBtn.style.opacity = '1';
         acceptBtn.style.transform = 'scale(1.05)';
         declineBtn.style.opacity = '0.6';
         declineBtn.style.transform = 'scale(1)';
     });
-    
-    // Handle Decline button - submit immediately
+
+    // Handle Decline button - show confirmation modal
     declineBtn.addEventListener('click', function() {
-        selectedOption = 'decline';
-        showRegretMessage();
+        showDeclineConfirmation();
     });
+    
+    // // Handle Decline button - submit immediately
+    // declineBtn.addEventListener('click', function() {
+    //     selectedOption = 'decline';
+    //     showRegretMessage();
+    // });
     
     // Handle Submit button
     submitBtn.addEventListener('click', function() {
         if (selectedOption === 'accept') {
             const guestCount = guestInput.value || 1;
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.cursor = 'not-allowed';
             showThankYouMessage(guestCount);
         } else if (!selectedOption) {
             showModal('Reminder', 'Please select your presence option first.');
         }
     });
+
+    // Show decline confirmation modal
+    function showDeclineConfirmation() {
+        const modal = document.createElement('div');
+        modal.id = 'declineConfirmModal';
+        modal.className = 'modal active';
+        modal.innerHTML = `
+            <div class="modal-content" style="text-align: center; padding: 40px 30px; background-color: #1f3554; border-radius: 8px; max-width: 400px; margin: 100px auto; position: relative;">
+                <h2 style="color: rgb(206, 227, 253); margin-bottom: 20px;">Are you sure?</h2>
+                <p style="font-size: 20px; margin-bottom: 30px; color: white;">Are you sure you want to decline your invitation?</p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <button id="declineConfirmYes" class="pill blue" style="cursor: pointer; font-size: 16px;">Yes, I'm sure</button>
+                    <button id="declineConfirmNo" class="pill cream" style="cursor: pointer; font-size: 16px;">No, go back</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Handle Yes button
+        document.getElementById('declineConfirmYes').addEventListener('click', function() {
+            modal.remove();
+            selectedOption = 'decline';
+            declineBtn.classList.add('emphasized');
+            declineBtn.style.opacity = '1';
+            declineBtn.style.transform = 'scale(1.05)';
+            acceptBtn.style.opacity = '0.6';
+            acceptBtn.style.transform = 'scale(1)';
+            acceptBtn.disabled = true;
+            acceptBtn.style.cursor = 'not-allowed';
+            submitRegretRSVP();
+        });
+        
+        // Handle No button
+        document.getElementById('declineConfirmNo').addEventListener('click', function() {
+            modal.remove();
+        });
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+    }
     
     // Show thank you message for acceptance
     function showThankYouMessage(guestCount) {
@@ -177,11 +231,10 @@ function setupRSVP() {
     }
     
     // Show regret message for decline
-    function showRegretMessage() {
-        // Submit RSVP to the new route
+    function submitRegretRSVP() {
         const guestName = document.querySelector('.guest-name').textContent || 'Guest';
         
-        fetch(`/${currentGuestId}/rsvp`, {
+        fetch(`/${guestId}/rsvp`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -200,7 +253,6 @@ function setupRSVP() {
         })
         .then(data => {
             console.log('RSVP decline submitted successfully:', data);
-            // Show regret message
             const rsvpSection = document.querySelector('.rsvp-gifts-section');
             rsvpSection.innerHTML = `
                 <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
@@ -220,6 +272,49 @@ function setupRSVP() {
             showModal('Error', 'There was an error submitting your RSVP. Please try again.');
         });
     }
+    // function showRegretMessage() {
+    //     // Submit RSVP to the new route
+    //     const guestName = document.querySelector('.guest-name').textContent || 'Guest';
+        
+    //     fetch(`/${currentGuestId}/rsvp`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             guest_name: guestName,
+    //             response: 'decline',
+    //             guest_count: 0
+    //         })
+    //     })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Failed to submit RSVP');
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         console.log('RSVP decline submitted successfully:', data);
+    //         // Show regret message
+    //         const rsvpSection = document.querySelector('.rsvp-gifts-section');
+    //         rsvpSection.innerHTML = `
+    //             <div style="text-align: center; padding: 60px 20px; animation: fadeIn 0.5s ease;">
+    //                 <h1 style="font-size: 48px; color: rgb(206, 227, 253); margin-bottom: 20px;">We'll Miss You</h1>
+    //                 <p class="rsvp-gifts-subtitle" style="font-size: 24px; margin-bottom: 30px;">
+    //                     Thank you for letting us know.
+    //                 </p>
+    //                 <p class="rsvp-gifts-subtitle">
+    //                     We're sorry you won't be able to join us,<br>
+    //                     but we appreciate you taking the time to respond.
+    //                 </p>
+    //             </div>
+    //         `;
+    //     })
+    //     .catch(error => {
+    //         console.error('Error submitting RSVP:', error);
+    //         showModal('Error', 'There was an error submitting your RSVP. Please try again.');
+    //     });
+    // }
 }
 
 // Check for existing RSVP

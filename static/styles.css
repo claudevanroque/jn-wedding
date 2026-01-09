@@ -2126,6 +2126,7 @@ body {
 
     .jn-detail-item p {
         font-size: 17px;
+        padding: 0 24px;
     }
 
     .jn-closing {
@@ -2530,6 +2531,12 @@ body {
     gap: 18px;
     margin-bottom: 50px;
 }
+
+.emphasized { 
+    background-color: #007bff; 
+    color: white;
+}
+
 
 .pill {
     margin: 0 auto;
