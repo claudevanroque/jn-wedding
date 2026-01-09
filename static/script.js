@@ -132,6 +132,9 @@ function setupRSVP() {
             showThankYouMessage(guestCount);
         } else if (!selectedOption) {
             showModal('Reminder', 'Please select your presence option first.');
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
         }
     });
 
@@ -183,7 +186,6 @@ function setupRSVP() {
     // Show thank you message for acceptance
     function showThankYouMessage(guestCount) {
         // Submit RSVP to the new route
-        console.log(guestId)
         const guestName = document.querySelector('.guest-name').textContent || 'Guest';
         
         fetch(`/${guestId}/rsvp`, {
@@ -226,6 +228,9 @@ function setupRSVP() {
         })
         .catch(error => {
             console.error('Error submitting RSVP:', error.message || error);
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
             showModal('Error', error.message);
         });
     }
