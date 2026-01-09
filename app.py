@@ -215,11 +215,16 @@ def add_guest():
         db.session.add(new_rsvp)
         db.session.commit()
         
+        rsvps = RSVP.query.all()
+        sync_rsvps_to_sheet(rsvps)
+        
         return jsonify({
             'message': 'Guest added successfully',
             'uid': new_rsvp.uid,
             'guest_name': new_rsvp.guest_name
         }), 201
+        
+        
     except Exception as e:
         db.session.rollback()
         import traceback
